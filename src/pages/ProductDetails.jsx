@@ -7,7 +7,6 @@ import {
   Alert,
   Modal,
   Container,
-  Form,
 } from "react-bootstrap";
 import axios from "axios";
 
@@ -33,7 +32,8 @@ function ProductDetails() {
       .delete(`https://fakestoreapi.com/products/${id}`)
       .then(() => {
         setSuccess(true);
-        setTimeout(() => navigate("/products"), 1500); // Wait 1.5 seconds before redirect
+        setShowModal(false);
+        setTimeout(() => navigate("/products"), 1500); 
       })
       .catch(() => alert("Delete failed"));
   };
