@@ -1,12 +1,48 @@
-# React + Vite
+# FakeStore E-Commerce App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive, single-page e-commerce app built with **React**, **React Router**, and the **FakeStoreAPI**. Users can browse, add, edit, and delete products using dynamic API calls. This project is designed for learning front-end API integration, routing, and component architecture.
 
-Currently, two official plugins are available:
+> Note: The FakeStoreAPI is a mock testing API. POST, PUT, and DELETE requests will appear successful but changes will not persist when re-fetching the data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Home Page**  
+  Welcome message and a button to navigate to the product listing.
+
+- **Product Listing Page**  
+  Displays all products from FakeStoreAPI with image, title, price, and a details button.
+
+- **Product Details Page**  
+  Shows detailed info for a single product with options to add to cart and delete.
+
+- **Add Product Page**  
+  Form to add a new product with fields for title, description, category, and price.
+
+- **Edit Product Page**  
+  Pre-filled form to edit an existing product using PUT request.
+
+- **Delete Functionality**  
+  Delete products with confirmation modal and redirect.
+
+- **Navigation Bar**  
+  Responsive React Bootstrap navbar with links to Home, Products, and Add Product.
+
+- **API Error & Loading Handling**  
+  User-friendly messages and loaders shown during API operations.
+
+---
+
+## Tech Stack
+
+- **React**
+- **React Router DOM**
+- **Axios**
+- **React Bootstrap**
+- **Bootstrap**
+- **FakeStoreAPI**
+
+---
+
+## Project Structure
