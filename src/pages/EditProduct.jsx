@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, Button, Spinner, Alert, Container, Form } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 import axios from 'axios';
+
+import ProductForm from '../components/ProductForm';
+import LoadingSpinner from '../components/LoadingSpinner';
+import SuccessAlert from '../components/alert/SuccessAlert';
 
 function EditProduct() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [form, setForm] = useState({
-    title: '', price: '', description: '', category: ''
-  });
+  const [form, setForm] = useState({ title: '', price: '', description: '', category: '' });
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState(false);
 
@@ -28,44 +30,21 @@ function EditProduct() {
     axios.put(`https://fakestoreapi.com/products/${id}`, form)
       .then(() => {
         setSuccess(true);
-        setTimeout(() => navigate('/products'), 1500); // Wait 1.5 seconds before redirect
+        setTimeout(() => navigate('/products'), 1500);
       })
       .catch(() => alert('Failed to update product.'));
   };
 
-  if (loading) return <div className="text-center py-5"><Spinner animation="border" /></div>;
-
+  if (loading) return <LoadingSpinner />;
   return (
     <Container className="py-4">
       <h2 className="mb-4">Edit Product</h2>
-      {success && <Alert variant="success">Product updated successfully!</Alert>}
+    {success && <SuccessAlert message="Product updated successfully!" />}
       <Card className="p-4 shadow-sm border-0">
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Title</Form.Label>
-            <Form.Control name="title" value={form.title} onChange={handleChange} required />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Price</Form.Label>
-            <Form.Control name="price" type="number" step="0.01" value={form.price} onChange={handleChange} required />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Description</Form.Label>
-            <Form.Control name="description" as="textarea" rows={3} value={form.description} onChange={handleChange} required />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Category</Form.Label>
-            <Form.Control name="category" value={form.category} onChange={handleChange} required />
-          </Form.Group>
-
-          <Button type="submit" variant="primary">Update Product</Button>
-        </Form>
+        <ProductForm form={form} onChange={handleChange} onSubmit={handleSubmit} submitLabel="Update Product" />
       </Card>
     </Container>
   );
-}
+} 
 
-export default EditProduct;
+export default EditProduct; 
